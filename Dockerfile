@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk --update --upgrade add bash cairo pango gdk-pixbuf py3-cffi py3-pillow py-lxml
+RUN apk --update --upgrade add bash cairo pango gdk-pixbuf py3-cffi py3-pillow py-lxml py3-pip
 RUN pip3 install WeasyPrint==51 gunicorn flask
 
 RUN mkdir /myapp
@@ -14,3 +14,4 @@ ENV TIMEOUT=120
 
 CMD gunicorn --bind 0.0.0.0:5001 wsgi:app --timeout $TIMEOUT --workers $NUM_WORKERS
 EXPOSE 5001
+
